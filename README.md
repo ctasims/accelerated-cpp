@@ -23,10 +23,12 @@ Exercises and notes from Accelerated C++, by Koenig and Moo
 15. Revisiting character pictures
 16. Where do we go from here?
 
+### 7/294 pp.
+
 
 ## Exercises
 
-0. 0/10 exercises
+0. 10/10 exercises
 1. 0/6 exercises
 2. 0/10 exercises
 3. 0/6 exercises
@@ -44,4 +46,4 @@ Exercises and notes from Accelerated C++, by Koenig and Moo
 15. 0/6 exercises
 16. 0/2 exercises
 
-### Total: 0/137
+### Total: 10/137 (7%)
