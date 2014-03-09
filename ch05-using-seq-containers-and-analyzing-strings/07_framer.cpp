@@ -8,11 +8,10 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-
 string::size_type width(const vector<string>& v) {
     string::size_type maxlen = 0;
     for (vector<string>::size_type i = 0; i != v.size(); ++i) {
-        maxlen = max(maxlen, v[i].size());
+        maxlen = std::max(maxlen, v[i].size());
     }
     return maxlen;
 }
@@ -36,4 +35,15 @@ vector<string> frame(const vector<string>& v)
     // write bottom border
     ret.push_back(border);
     return ret;
+}
+
+int main()
+{
+    vector<string> v, framed_v;
+    framed_v = frame(v);
+    for (vector<string>::const_iterator i = framed_v.begin(); i != framed_v.end(); ++i) {
+        cout << *i << endl;
+    }
+    
+    return 0;
 }

@@ -9,6 +9,14 @@ using std::cout;
 using std::endl;
 
 
+string::size_type width(const vector<string>& v) {
+    string::size_type maxlen = 0;
+    for (vector<string>::size_type i = 0; i != v.size(); ++i) {
+        maxlen = std::max(maxlen, v[i].size());
+    }
+    return maxlen;
+}
+
 vector<string> hcat(const vector<string>& left, const vector<string>& right)
 {
     vector<string> ret;
@@ -19,10 +27,11 @@ vector<string> hcat(const vector<string>& left, const vector<string>& right)
     // indices to look at elemens from left and right respectively
     vector<string>::size_type i = 0, j = 0;
 
+    // construct new string to hold chars from both pictures
+    string s;
+
     // continue until we've seen all rows from both pictures
     while (i != left.size() || j != right.size()) {
-        // construct new string to hold chars from both pictures
-        string s;
 
         // copy a row from the left-hand side, if there is one
         if (i != left.size()) {
@@ -30,6 +39,7 @@ vector<string> hcat(const vector<string>& left, const vector<string>& right)
         }
 
         // pad to full width
+        cout << s << endl;
         s += string(widthl - s.size(), ' ');
 
         // copy row from rhs, if there is one
@@ -48,13 +58,15 @@ int main()
 {
     vector<string> left = {
         "*****",
-        "aaaaa",
-        "*****"
-    }
+        "aaaaa"
+    };
+
     vector<string> right = {
         "*****",
-        "bbbbb"
-    }
+        "bbbbb",
+        "*****"
+    };
+
     vector<string> result = hcat(left, right);
 
     // print result
