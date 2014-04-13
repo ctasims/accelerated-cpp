@@ -39,10 +39,54 @@ double average_grade(const Student_info& s);
 double average_analysis(const vector<Student_info>& students);
 double optimistic_median(const Student_info& s);
 double optimistic_median_analysis(const vector<Student_info>& students);
-//vector<Student_info> extract_didnt_do_hw(vector<Student_info>& students);
+vector<Student_info> extract_didnt_do_hw(vector<Student_info>& students);
 vector<Student_info> extract_fails(vector<Student_info>& students);
 bool pgrade(Student_info& s);
 bool fgrade(Student_info& s);
+
+
+int main()
+{
+    // students who did and didn't do all of their hw
+    vector<Student_info> did, didnt;
+
+    // read the student records and partition them
+    Student_info student;
+    while (read(cin, student)) {
+        did.push_back(student);
+    }
+
+    // separate out those who didn't do homework
+    didnt = extract_didnt_do_hw(did);
+
+    // test it
+    for (std::vector<Student_info>::const_iterator i = did.begin(); i != did.end(); ++i) {
+        cout << "did: " << i->name << " " << (i->homework).size() << endl; 
+    }
+    for (std::vector<Student_info>::const_iterator i = didnt.begin(); i != didnt.end(); ++i) {
+        cout << "didnt: " << i->name << " " << (i->homework).size() << endl; 
+    }
+    
+    
+
+    // check that both groups contain data
+    if (did.empty()) {
+        cout << "No student did all the homework!" << endl;
+        return 1;
+    }
+    if (didnt.empty()) {
+        std::cout << "Every student did all the homework!" << std::endl;
+        return 1;
+    }
+
+    // do the analysis
+    write_analysis(cout, "median", median_analysis, did, didnt);
+    write_analysis(cout, "average", average_analysis, did, didnt);
+    write_analysis(cout, "median of homework turned in",
+            optimistic_median_analysis, did, didnt);
+
+    return 0;
+}
 
 
 bool did_all_hw(const Student_info& s)
@@ -51,16 +95,11 @@ bool did_all_hw(const Student_info& s)
 }
 
 
-vector<Student_info> did, didnt;
-Student_info student;
-
-
-
 double grade_aux(const Student_info& s)
 {
     try {
         return grade(s);
-    } catch (domain_error) {
+    } catch (std::domain_error) {
         return grade(s.midterm, s.final, 0);
     }
 }
@@ -81,42 +120,8 @@ void write_analysis(ostream& out, const string& name,
         const vector<Student_info>& did,
         const vector<Student_info>& didnt)
 {
-    out << name << ": median(did = " analysis(did) <<
+    cout << name << ": median(did) = " << analysis(did) <<
         ", median(didnt) = " << analysis(didnt) << endl;
-}
-
-
-int main()
-{
-    // students who did and didn't do all of their hw
-    vector<Student_info> did, didnt;
-
-    // read the student records and partition them
-    Student_info student;
-    while (read(cin, student)) {
-        if (did_all_hw(student))
-            did.push_back(student);
-        else
-            didnt.push_back(student);
-    }
-
-    // check that both groups contain data
-    if (did.empty()) {
-        cout << "No student did all the homework!" << endl;
-        return 1;
-    }
-    if (didnt.empty()) {
-        std::cout << "Every student did all the homework!" << std::endl;
-        return 1;
-    }
-
-    // do the analysis
-    write_analysis(cout, "median", median_analysis, did, didnt);
-    write_analysis(cout, "average", average_analysis, did, didnt);
-    write_analysis(cout, "median of homework turned in",
-            optimistic_median_analysis, did, didnt);
-
-    return 0;
 }
 
 
@@ -163,6 +168,16 @@ double optimistic_median_analysis(const vector<Student_info>& students)
 }
 
 
+vector<Student_info> extract_didnt_do_hw(vector<Student_info>& students)
+{
+    vector<Student_info>::iterator iter = stable_partition(students.begin(),
+            students.end(), did_all_hw);
+    vector<Student_info> didnt_do_hw(iter, students.end());
+    students.erase(iter, students.end());
+    return didnt_do_hw;
+}
+
+
 // one-pass solution, twice as fast as two-pass
 vector<Student_info> extract_fails(vector<Student_info>& students)
 {
@@ -174,27 +189,11 @@ vector<Student_info> extract_fails(vector<Student_info>& students)
 }
 
 
-// two-pass solution
-//vector<Student_info> extract_fails(vector<Student_info>& students)
-//{
-    //vector<Student_info>& fail;
-    //// remove students that pass and put them in fail.
-    //// remove_if just moves passing elems up and returns pointer to last one.
-    //// failing elems moved to back and will be written over.
-    //remove_copy_if(students.begin(), students.end(), back_inserter(fail),
-            //pgrade);
-    //// get rid of students that fail
-    //students.erase(
-            //remove_if(students.begin(), students.end(), fgrade),
-            //students.end());
-    //return fail;
-//}
-
-
 bool pgrade(Student_info& s)
 {
     return !fgrade(s);
 }
+
 
 bool fgrade(Student_info& s)
 {

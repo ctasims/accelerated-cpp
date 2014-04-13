@@ -13,13 +13,13 @@
 
 5. See `grade_analysis.cpp`.
 
-6. 
+6. sf.
 
-7. 
+7. sf.
 
-8. 
+8. sf. Good problem on passing function! This is a function pointer, not a function object liked I'm familiar with from Python.
 
-9. 
+9. sf. Two solutions: one using simple iterator loop and another using `accumulate`.
 
 
 ## Notes
@@ -83,5 +83,4 @@ If we want to actually remove these elements, we must call `erase` next.
 Generic algorithms do not change the size of a container(?)
 
 Note that iterators are often invalidated after a container or its elements have been modified.
-
 
