@@ -13,3 +13,16 @@
 *.a
 
 *.exe
+
+# VS files
+Content/
+Debug/
+packages/
+Scripts/
+*.sdf
+*.sln
+*.v12.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+packages.config
