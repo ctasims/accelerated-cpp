@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>CodeMirror.KeyMap</id>
+    <version>3.01</version>
+    <title>CodeMirror KeyMap</title>
+    <authors>Marijn Haverbeke</authors>
+    <owners>Marijn Haverbeke</owners>
+    <licenseUrl>http://codemirror.net/LICENSE</licenseUrl>
+    <projectUrl>http://codemirror.net/</projectUrl>
+    <iconUrl>http://codemirror.net/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>CodeMirror key-mappings for Emacs and VIM
+
+http://codemirror.net/doc/manual.html#keymaps</description>
+    <summary>CodeMirror key-mappings for Emacs and VIM</summary>
+    <language>en-US</language>
+    <tags>keymaps emacs vim syntax-highlight browser code editor</tags>
+    <dependencies>
+      <dependency id="CodeMirror.Base" version="3.01" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>CodeMirror.Base</id>
+    <version>3.01</version>
+    <title>CodeMirror (base)</title>
+    <authors>Marijn Haverbeke</authors>
+    <owners>Marijn Haverbeke</owners>
+    <licenseUrl>http://codemirror.net/LICENSE</licenseUrl>
+    <projectUrl>http://codemirror.net/</projectUrl>
+    <iconUrl>http://codemirror.net/doc/baboon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>CodeMirror is a JavaScript component that provides a code editor in the browser. When a mode is available for the language you are coding in, it will color your code, and optionally help with indentation.
+
+A rich programming API and a CSS theming system are available for customizing CodeMirror to fit your application, and extending it with new functionality.</description>
+    <summary>In-browser code editing made bearable</summary>
+    <releaseNotes>New major version. Only partially backwards-compatible. See the upgrading guide for more information. Changes since release candidate 2:
+
+Rewritten VIM mode.
+Fix a few minor scrolling and sizing issues.
+Work around Safari segfault when dragging.
+Full list of patches.
+https://github.com/marijnh/CodeMirror/compare/v3.0rc2...v3.0</releaseNotes>
+    <language>en-US</language>
+    <tags>browser code editor syntax-highlight</tags>
+  </metadata>
+</package>

@@ -3,7 +3,7 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>md;markdown;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
@@ -446,5 +446,22 @@
     <None Include="Scripts\codemirror-3.01\keymap\emacs.js">
       <Filter>Scripts\codemirror-3.01\keymap</Filter>
     </None>
+    <None Include="ch07-using-associative-containers\ch07-notes.markdown">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="ch06-using-library-algorithms\notes.markdown">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include=".gitignore" />
+    <None Include="notes-tmpl.markdown">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="README.md">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ch06-using-library-algorithms\ex08\10_students.txt" />
+    <Text Include="ch06-using-library-algorithms\ex07\10_students.txt" />
   </ItemGroup>
 </Project>

@@ -203,8 +203,13 @@
     <ClInclude Include="ch06-using-library-algorithms\find_url.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="ch06-using-library-algorithms\notes.markdown" />
+    <None Include="ch07-using-associative-containers\ch07-notes.markdown" />
     <None Include="Content\codemirror-3.01\codemirror.css" />
+    <None Include="notes-tmpl.markdown" />
     <None Include="packages.config" />
+    <None Include="README.md" />
     <None Include="Scripts\codemirror-3.01\codemirror.js" />
     <None Include="Scripts\codemirror-3.01\keymap\emacs.js" />
     <None Include="Scripts\codemirror-3.01\keymap\vim.js" />
@@ -212,6 +217,10 @@
     <None Include="Scripts\codemirror-3.01\mode\htmlmixed.js" />
     <None Include="Scripts\codemirror-3.01\mode\javascript.js" />
     <None Include="Scripts\codemirror-3.01\mode\xml.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ch06-using-library-algorithms\ex07\10_students.txt" />
+    <Text Include="ch06-using-library-algorithms\ex08\10_students.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
