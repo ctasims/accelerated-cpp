@@ -2,9 +2,6 @@
 #include <vector>
 using std::vector;
 
-#include <list>
-using std::list;
-
 #include <algorithm>
 #include <string>
 using std::string;
@@ -18,6 +15,7 @@ using std::cout;
 using std::istream;
 
 #include <stdexcept>
+
 
 typedef vector<string> Rule;
 typedef vector<Rule> Rule_collection;
@@ -94,55 +92,63 @@ int nrand(int n)
 }
 
 
-void gen_aux(const Grammar& g, const string& word, list<string>& ret)
+void gen_aux(const Grammar& g, vector<string>& ret, vector<string>& rule_stack)
 {
-    if (!bracketed(word)) {
-        ret.push_back(word);
-    } else {
-        // locate the rule that corresponds to word
-        Grammar::const_iterator it = g.find(word);
-        if (it == g.end())
-            throw std::logic_error("empty rule");
+    string word;
+    do {
+        word = rule_stack.back();
+        rule_stack.pop_back();
+        if (!bracketed(word)) {
+            ret.push_back(word);
+        } else {
+            // locate the rule that corresponds to word
+            Grammar::const_iterator it = g.find(word);
+            if (it == g.end())
+                throw std::logic_error("empty rule");
 
-        // fetch the set of possible results
-        const Rule_collection& c = it->second;
+            // fetch the set of possible results
+            const Rule_collection& c = it->second;
 
-        // from which we select one at random
-        const Rule& r = c[nrand(c.size())];
+            // from which we select one at random
+            const Rule& r = c[nrand(c.size())];
 
-        // recursively expand the selected rule
-        for (Rule::const_iterator i = r.begin(); i != r.end(); ++i) {
-            gen_aux(g, *i, ret);
+            // recursively expand the selected rule
+            for (Rule::const_iterator i = r.begin(); i != r.end(); ++i) {
+                rule_stack.push_back(*i);
+            }
         }
-    }
+    } while (rule_stack.size() > 0);
 }
 
 
-list<string> gen_sentence(const Grammar& g)
+vector<string> gen_sentence(const Grammar& g)
 {
-	list<string> ret;
-	gen_aux(g, "<sentence>", ret);
-	return ret;
+    vector<string> ret;
+    vector<string> rule_stack;
+    rule_stack.push_back("<sentence>");
+    gen_aux(g, ret, rule_stack);
+    return ret;
 }
 
 
 int main()
 {
-    // generate the sentence
-    list<string> sentence = gen_sentence(read_grammar(cin));
+    // generate the sentence by iterating over ret backwards
+    vector<string> sentence = gen_sentence(read_grammar(cin));
 
     // write first word, if any
-    list<string>::const_iterator it = sentence.begin();
+    vector<string>::reverse_iterator it = sentence.rbegin();
     if (!sentence.empty()) {
         cout << *it;
         ++it;
     }
 
     // write the rest of the words, each preceded by a space
-    while (it != sentence.end()) {
+    while (it != sentence.rend()) {
         cout << " " << *it;
         ++it;
     }
     cout << endl;
     return 0;
 }
+
