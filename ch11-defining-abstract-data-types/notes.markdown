@@ -1,7 +1,7 @@
 # Chapter 11: Defining abstract data types
 
 ## Exercises
-0. 
+0. Done.
 
 1. 
 
@@ -11,18 +11,15 @@
 
 4. 
 
-5. 
+5. Might be done. I instrumented the `Student_info` class but I'm unsure how to do the analysis based on Chapter 6 exercises. My analysis was uninformative.
 
 6. 
 
-7. 
+7. (med)
 
-8. 
+8. (hard)
 
-9. 
-
-10. 
-
+9. (med)
 
 
 
@@ -82,3 +79,7 @@ It's important to find ways to trim down expensive operations, like copying memo
 E.g. when dynamically allocating a new array, allocate for more than is needed so allocation isn't required on every call for expansion.
 
 ### 11.5 Flexible memory management
+The `new` operate allocates *and* initializes memory.
+The `<memory>` header provides `allocater<T>`, which can allocate a block of uninitialized memory.
+
+We can use a class invariant similar to how we used a loop invariant - to provide true statements when the object is constructed.
